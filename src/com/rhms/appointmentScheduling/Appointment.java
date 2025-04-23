@@ -1,9 +1,10 @@
 package com.rhms.appointmentScheduling;
 
-//importing packages
-import com.rhms.userManagement.Patient;
-import com.rhms.userManagement.Doctor;
+
 import java.util.Date;
+
+import com.rhms.userManagement.Doctor;
+import com.rhms.userManagement.Patient;
 
 public class Appointment {
     private Date appointmentDate;
@@ -18,14 +19,15 @@ public class Appointment {
         this.status = status;
     }
 
-    // Getters and setters
+    // Getters 
     public Date getAppointmentDate() { return appointmentDate; }
     public Doctor getDoctor() { return doctor; }
     public Patient getPatient() { return patient; }
+    //Setters
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
 
-    // overriding toString to print details of appointment
+    // ovverrriden to String method
     public String toString() {
         return "Appointment with Dr. " + doctor.getName() + " on " + appointmentDate + " for " + patient.getName() + " - Status: " + status;
     }

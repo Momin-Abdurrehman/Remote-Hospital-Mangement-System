@@ -1,7 +1,8 @@
 package com.rhms.userManagement;
 
 import java.util.ArrayList;
-import com.rhms.emergencyAlert.PanicButton; // Make sure this import exists
+
+import com.rhms.emergencyAlert.PanicButton; 
 
 public class Patient extends User {
     private ArrayList<String> medicalRecords;
@@ -14,19 +15,19 @@ public class Patient extends User {
         this.medicalRecords = new ArrayList<>();
         this.doctorFeedback = new ArrayList<>();
         this.appointments = new ArrayList<>();
-        this.panicButton = new PanicButton(this); // Initialize panic button
+        this.panicButton = new PanicButton(this); // Panic butto functionality
     }
 
     public void uploadMedicalRecord(String record) {        
         medicalRecords.add(record);
     }
 
-    public ArrayList<String> getDoctorFeedback(){       //returns doctorFeedback list for use in Doctor class
+    public ArrayList<String> getDoctorFeedback(){       //just returns doctorFeedback list for use in Doctor class
         return doctorFeedback;
     }
 
     public void viewDoctorFeedback() {
-        for (String feedback : doctorFeedback) {        //prints doctorFeedback(s)
+        for (String feedback : doctorFeedback) {        //prints doctorFeedbacks
             System.out.println(feedback);
         }
     }

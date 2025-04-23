@@ -1,9 +1,11 @@
 package com.rhms.notifications;
 
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;  //will represent a task that can be scheduled for one-time or repeated execution by a Timer
+
 import com.rhms.appointmentScheduling.Appointment;
 import com.rhms.userManagement.Patient;
-import java.util.*;
-import java.time.LocalDateTime;
 
 // Manages automated reminders for appointments and medications
 public class ReminderService {
@@ -13,7 +15,7 @@ public class ReminderService {
     // Initialize reminder service with SMS capability
     public ReminderService() {
         this.smsNotification = new SMSNotification();
-        this.scheduler = new Timer(true);            // Daemon thread for background scheduling
+        this.scheduler = new Timer(true);            
     }
 
     // Schedule reminder 24 hours before appointment
@@ -59,6 +61,7 @@ public class ReminderService {
                 smsNotification.sendNotification(patient.getPhone(), subject, message);
             }
         }, 0, 24 * 60 * 60 * 1000); // Set for daily intervals
+
     }
 
     // Send one-time immediate reminder

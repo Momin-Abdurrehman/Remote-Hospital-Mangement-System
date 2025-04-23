@@ -1,23 +1,17 @@
 package com.rhms.emergencyAlert;
 
-import com.rhms.userManagement.Patient;
 import java.time.LocalDateTime;
 
-/**
- * Manages emergency panic button functionality for patients
- * Allows patients to trigger manual emergency alerts
- */
+import com.rhms.userManagement.Patient;
+
 public class PanicButton {
-    // Services and state management
+    // Handles notifications and panic button state
     private NotificationService notificationService;
     private Patient patient;
     private boolean isActive;
     private LocalDateTime lastTriggered;
 
-    /**
-     * Creates a new panic button for a specific patient
-     * @param patient The patient associated with this panic button
-     */
+    // Constructor to initialize panic button for a patient
     public PanicButton(Patient patient) {
         this.patient = patient;
         this.notificationService = new NotificationService();
@@ -25,10 +19,7 @@ public class PanicButton {
         this.lastTriggered = null;
     }
 
-    /**
-     * Triggers an emergency alert with a specified reason
-     * @param reason Description of the emergency situation
-     */
+    // Triggers an emergency alert
     public void triggerAlert(String reason) {
         if (!isActive) {
             System.out.println("Panic button is currently disabled.");
@@ -50,9 +41,7 @@ public class PanicButton {
         notificationService.sendEmergencyAlert(alertMessage, patient);
     }
 
-    /**
-     * Enables the panic button if currently disabled
-     */
+    // Enables the panic button
     public void enable() {
         if (isActive) {
             System.out.println("Panic button is already enabled for patient: " + patient.getName());
@@ -62,9 +51,7 @@ public class PanicButton {
         System.out.println("Panic button enabled for patient: " + patient.getName());
     }
 
-    /**
-     * Disables the panic button if currently enabled
-     */
+    // Disables the panic button
     public void disable() {
         if (!isActive) {
             System.out.println("Panic button is already disabled for patient: " + patient.getName());
@@ -74,26 +61,17 @@ public class PanicButton {
         System.out.println("Panic button disabled for patient: " + patient.getName());
     }
 
-    /**
-     * Returns the timestamp of the last emergency alert
-     * @return LocalDateTime of the last trigger, null if never triggered
-     */
+    // Returns the last triggered timestamp
     public LocalDateTime getLastTriggered() {
         return lastTriggered;
     }
 
-    /**
-     * Checks if the panic button is currently active
-     * @return true if enabled, false if disabled
-     */
+    // Checks if the panic button is active
     public boolean isActive() {
         return isActive;
     }
 
-    /**
-     * Gets the current status as a readable string
-     * @return "enabled" or "disabled"
-     */
+    // Returns the current status as a string
     public String getStatus() {
         return isActive ? "enabled" : "disabled";
     }

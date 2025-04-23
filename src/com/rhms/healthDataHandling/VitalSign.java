@@ -1,10 +1,9 @@
 package com.rhms.healthDataHandling;
 
-/**
- * Represents a patient's vital signs measurement
- * Stores and validates heart rate, oxygen level, blood pressure, and temperature
- */
-public class VitalSign {
+public class VitalSign {                       
+
+//defines vitals for patient
+   
     // Normal ranges for vital signs
     private static final double MIN_HEART_RATE = 40.0;   // bpm
     private static final double MAX_HEART_RATE = 120.0;  // bpm
@@ -104,11 +103,16 @@ public class VitalSign {
     }
 
     public void displayVitals() {
-        System.out.println("\n=== Vital Signs ===");
-        System.out.println("Heart Rate: " + heartRate + " bpm");
-        System.out.println("Oxygen Level: " + oxygenLevel + " %");
-        System.out.println("Blood Pressure: " + bloodPressure + " mmHg");
-        System.out.println("Temperature: " + temperature + " °C");
-        System.out.println("=================");
+        System.out.println("\n————————————————————————————————————");
+        System.out.println("               Vital Signs               ");
+        System.out.println("————————————————————————————————————");
+        
+        System.out.println("  Heart Rate        : " + heartRate + " bpm");
+        System.out.println("  Oxygen Level      : " + oxygenLevel + " %");
+        System.out.println("  Blood Pressure    : " + bloodPressure + " mmHg");
+        System.out.println("  Temperature       : " + temperature + " °C");
+        
+        System.out.println("————————————————————————————————————");
     }
+    
 }
