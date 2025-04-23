@@ -1,6 +1,6 @@
 # 🏥 Remote Healthcare Management System (RHMS)
+![image](https://github.com/user-attachments/assets/fb411d4d-2d78-44ec-91ae-d7916baef692)
 
-![RHMS Banner](https://via.placeholder.com/1200x300)
 
 ## 📋 Overview
 
