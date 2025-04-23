@@ -35,22 +35,28 @@ public class App {
 
     public static void main(String[] args) {
         while (true) {
-            // User Type Selection
-            System.out.println("\n===== RHMS User Type Selection =====");
-            System.out.println("1. Patient");
-            System.out.println("2. Doctor");
-            System.out.println("3. Admin");
-            System.out.println("0. Exit System");
-            System.out.print("Choose your user type: ");
-    
+            System.out.println("\n——————————————————————————————————————");
+            System.out.println("         Welcome to RHMS System        ");
+            System.out.println("——————————————————————————————————————");
+            System.out.println("      Please select your user type     ");
+            System.out.println("——————————————————————————————————————");
+            System.out.println("  1. Patient");
+            System.out.println("  2. Doctor");
+            System.out.println("  3. Admin");
+            System.out.println("  0. Exit System");
+            System.out.println("——————————————————————————————————————");
+            System.out.print("  Enter your choice: ");
+        
             int userTypeChoice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
-    
+            scanner.nextLine(); // Clear newline
+        
+            System.out.println(); // Add a blank line
+        
             if (userTypeChoice == 0) {
-                System.out.println("Exiting RHMS System. Goodbye!");
+                System.out.println("Thank you for using RHMS. Goodbye!");
                 return;
             }
-    
+        
             switch (userTypeChoice) {
                 case 1:
                     handlePatientMenu();
@@ -65,23 +71,29 @@ public class App {
                     System.out.println("Invalid choice! Please try again.");
             }
         }
+        
     }
     
     private static void handleAdminMenu() {
         while (true) {
-            System.out.println("\n===== RHMS Admin Menu =====");
-            System.out.println("1. Register Patient");
-            System.out.println("2. Register Doctor");
-            System.out.println("3. Upload Vital Signs");
-            System.out.println("4. Schedule Appointment");
-            System.out.println("5. Send Notifications");
-            System.out.println("6. View All Appointments");
-            System.out.println("0. Back to User Selection");
-            System.out.print("Choose an option: ");
-    
+            System.out.println("\n——————————————————————————————————————");
+            System.out.println("            RHMS Admin Menu            ");
+            System.out.println("——————————————————————————————————————");
+            System.out.println("  1. Register Patient");
+            System.out.println("  2. Register Doctor");
+            System.out.println("  3. Upload Vital Signs");
+            System.out.println("  4. Schedule Appointment");
+            System.out.println("  5. Send Notifications");
+            System.out.println("  6. View All Appointments");
+            System.out.println("  0. Back to User Selection");
+            System.out.println("——————————————————————————————————————");
+            System.out.print("  Enter your choice: ");
+        
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume newline
-    
+        
+            System.out.println(); // Blank line for spacing
+        
             switch (choice) {
                 case 1:
                     registerPatient();
@@ -102,29 +114,35 @@ public class App {
                     viewAllAppointments();
                     break;
                 case 0:
-                    return; // Exit to user selection
+                    return; // Go back to main menu
                 default:
                     System.out.println("Invalid choice! Please try again.");
             }
         }
+        
     }
     
     private static void handlePatientMenu() {
         while (true) {
-            System.out.println("\n===== RHMS Patient Menu =====");
-            System.out.println("1. Schedule an Appointment");
-            System.out.println("2. View Patient Vitals");
-            System.out.println("3. Provide Doctor Feedback");
-            System.out.println("4. Trigger Emergency Alert");
-            System.out.println("5. Enable/Disable Panic Button");
-            System.out.println("6. Join Video Consultation");
-            System.out.println("7. Open Chat");
-            System.out.println("0. Back to User Selection");
-            System.out.print("Choose an option: ");
-    
+            System.out.println("\n——————————————————————————————————————");
+            System.out.println("           RHMS Patient Menu           ");
+            System.out.println("——————————————————————————————————————");
+            System.out.println("  1. Schedule an Appointment");
+            System.out.println("  2. View Patient Vitals");
+            System.out.println("  3. Provide Doctor Feedback");
+            System.out.println("  4. Trigger Emergency Alert");
+            System.out.println("  5. Enable/Disable Panic Button");
+            System.out.println("  6. Join Video Consultation");
+            System.out.println("  7. Open Chat");
+            System.out.println("  0. Back to User Selection");
+            System.out.println("——————————————————————————————————————");
+            System.out.print("  Enter your choice: ");
+        
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume newline
-    
+        
+            System.out.println(); // Blank line for spacing
+        
             switch (choice) {
                 case 1:
                     scheduleAppointment();
@@ -148,156 +166,208 @@ public class App {
                     openChat();
                     break;
                 case 0:
-                    return; // Exit to user selection
+                    return; // Go back to user selection
                 default:
                     System.out.println("Invalid choice! Please try again.");
             }
         }
+        
     }
     
-    private static void handleDoctorMenu() {
-        while (true) {
-            System.out.println("\n===== RHMS Doctor Menu =====");
-            System.out.println("1. Approve Appointment");
-            System.out.println("2. Cancel Appointment");
-            System.out.println("3. View Patient Vitals");
-            System.out.println("4. Start Video Consultation");
-            System.out.println("5. Open Chat");
-            System.out.println("0. Back to User Selection");
-            System.out.print("Choose an option: ");
+
+        private static void handleDoctorMenu() {
+            while (true) {
+                System.out.println("\n——————————————————————————————————————");
+                System.out.println("            RHMS Doctor Menu           ");
+                System.out.println("——————————————————————————————————————");
+                System.out.println("  1. Approve Appointment");
+                System.out.println("  2. Cancel Appointment");
+                System.out.println("  3. View Patient Vitals");
+                System.out.println("  4. Start Video Consultation");
+                System.out.println("  5. Open Chat");
+                System.out.println("  0. Back to User Selection");
+                System.out.println("——————————————————————————————————————");
+                System.out.print("  Enter your choice: ");
+        
+                int choice = scanner.nextInt();
+                scanner.nextLine(); // Consume newline
+        
+                System.out.println(); // Blank line for spacing
+        
+                switch (choice) {
+                    case 1:
+                        approveAppointment();
+                        break;
+                    case 2:
+                        cancelAppointment();
+                        break;
+                    case 3:
+                        viewVitals();
+                        break;
+                    case 4:
+                        startVideoConsultation();
+                        break;
+                    case 5:
+                        openChat();
+                        break;
+                    case 0:
+                        return; // Go back to user selection
+                    default:
+                        System.out.println("Invalid choice! Please try again.");
+                }
+            }
+        }
+        
     
+
+        private static void showAdminMenu() {
+            System.out.println("\n——————————————————————————————————————");
+            System.out.println("            RHMS Admin Menu            ");
+            System.out.println("——————————————————————————————————————");
+            System.out.println("  1. Register Patient");
+            System.out.println("  2. Register Doctor");
+            System.out.println("  3. Schedule Appointment");
+            System.out.println("  4. Send Notifications");
+            System.out.println("  5. View All Appointments");
+            System.out.println("  0. Back to User Selection");
+            System.out.println("——————————————————————————————————————");
+            System.out.print("  Enter your choice: ");
+        
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume newline
-    
+        
+            System.out.println(); // Blank line for spacing
+        
             switch (choice) {
                 case 1:
-                    approveAppointment();
+                    registerPatient();
                     break;
                 case 2:
-                    cancelAppointment();
+                    registerDoctor();
+                    break;
+                case 3:
+                    scheduleAppointment();
                     break;
                 case 4:
-                    viewVitals();
+                    sendNotification(); // Send notifications
                     break;
                 case 5:
-                    startVideoConsultation();
-                    break;
-                case 6:
-                    openChat();
+                    viewAllAppointments();
                     break;
                 case 0:
-                    return; // Exit to user selection
+                    return; // Go back to user selection
                 default:
                     System.out.println("Invalid choice! Please try again.");
             }
         }
-    }
+        
 
-    private static void showAdminMenu() {
-        System.out.println("\n===== RHMS Admin Menu =====");
-        System.out.println("1. Register Patient");
-        System.out.println("2. Register Doctor");
-        System.out.println("3. Schedule Appointment");
-        System.out.println("4. Send Notifications"); // Added option for sending notifications
-        System.out.println("5. View All Appointments");
-        System.out.println("0. Back to User Selection");
-        System.out.print("Choose an option: ");
-    
-        int choice = scanner.nextInt();
-        scanner.nextLine(); // Consume newline
-    
-        switch (choice) {
-            case 1:
-                registerPatient();
-                break;
-            case 2:
-                registerDoctor();
-                break;
-            case 3:
-                scheduleAppointment();
-                break;
-            case 4:
-                sendNotification(); // Call the sendNotification method
-                break;
-            case 5:
-                viewAllAppointments();
-                break;
-            case 0:
-                return; // Exit to user selection
-            default:
-                System.out.println("Invalid choice! Please try again.");
+        private static void showPatientMenu() {
+            System.out.println("\n——————————————————————————————————————");
+            System.out.println("             RHMS Patient Menu          ");
+            System.out.println("——————————————————————————————————————");
+            System.out.println("  1. Schedule an Appointment");
+            System.out.println("  2. View Patient Vitals");
+            System.out.println("  3. Provide Doctor Feedback");
+            System.out.println("  4. Trigger Emergency Alert");
+            System.out.println("  5. Enable/Disable Panic Button");
+            System.out.println("  6. Join Video Consultation");
+            System.out.println("  7. Open Chat");
+            System.out.println("  9. Back to User Selection");
+            System.out.println("  0. Exit");
+            System.out.println("——————————————————————————————————————");
+            System.out.print("  Enter your choice: ");
         }
-    }
+        
 
-    private static void showPatientMenu() {
-        System.out.println("1. Schedule an Appointment");
-        System.out.println("2. View Patient Vitals");
-        System.out.println("3. Provide Doctor Feedback");
-        System.out.println("4. Trigger Emergency Alert");
-        System.out.println("5. Enable/Disable Panic Button");
-        System.out.println("6. Join Video Consultation");
-        System.out.println("7. Open Chat");
-        System.out.println("9. Back to User Selection");
-        System.out.println("0. Exit");
-        System.out.print("Choose an option: ");
-    }
+        private static void showDoctorMenu() {
+            System.out.println("\n——————————————————————————————————————");
+            System.out.println("             RHMS Doctor Menu          ");
+            System.out.println("——————————————————————————————————————");
+            System.out.println("  1. Approve Appointment");
+            System.out.println("  2. Cancel Appointment");
+            System.out.println("  3. Upload Vital Signs");
+            System.out.println("  4. View Patient Vitals");
+            System.out.println("  5. Start Video Consultation");
+            System.out.println("  6. Open Chat");
+            System.out.println("  9. Back to User Selection");
+            System.out.println("  0. Exit");
+            System.out.println("——————————————————————————————————————");
+            System.out.print("  Enter your choice: ");
+        }
+        
 
-    private static void showDoctorMenu() {
-        System.out.println("1. Approve Appointment");
-        System.out.println("2. Cancel Appointment");
-        System.out.println("3. Upload Vital Signs");
-        System.out.println("4. View Patient Vitals");
-        System.out.println("5. Start Video Consultation");
-        System.out.println("6. Open Chat");
-        System.out.println("9. Back to User Selection");
-        System.out.println("0. Exit");
-        System.out.print("Choose an option: ");
-    }
+        private static void registerPatient() {
+            System.out.println("\n——————————————————————————————————————");
+            System.out.println("             Register New Patient      ");
+            System.out.println("——————————————————————————————————————");
+            
+            System.out.print("  Enter Patient Name: ");
+            String name = scanner.nextLine();
+            
+            System.out.print("  Enter Email: ");
+            String email = scanner.nextLine();
+            
+            System.out.print("  Enter Password: ");
+            String password = scanner.nextLine();
+            
+            System.out.print("  Enter Phone: ");
+            String phone = scanner.nextLine();
+            
+            System.out.print("  Enter Address: ");
+            String address = scanner.nextLine();
+            
+            System.out.print("  Enter User ID: ");
+            int userID = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
+        
+            Patient patient = new Patient(name, email, password, phone, address, userID);
+            patients.add(patient);
+            
+            System.out.println("——————————————————————————————————————");
+            System.out.println("  Patient " + name + " registered successfully.");
+            System.out.println("——————————————————————————————————————");
+        }
 
-    private static void registerPatient() {
-        System.out.print("Enter Patient Name: ");
-        String name = scanner.nextLine();
-        System.out.print("Enter Email: ");
-        String email = scanner.nextLine();
-        System.out.print("Enter Password: ");
-        String password = scanner.nextLine();
-        System.out.print("Enter Phone: ");
-        String phone = scanner.nextLine();
-        System.out.print("Enter Address: ");
-        String address = scanner.nextLine();
-        System.out.print("Enter User ID: ");
-        int userID = scanner.nextInt();
-        scanner.nextLine(); // Consume newline
-
-        Patient patient = new Patient(name, email, password, phone, address, userID);
-        patients.add(patient);
-        System.out.println("Patient " + name + " registered successfully.");
-    }
-
-    private static void registerDoctor() {
-        System.out.print("Enter Doctor Name: ");
-        String name = scanner.nextLine();
-        System.out.print("Enter Email: ");
-        String email = scanner.nextLine();
-        System.out.print("Enter Password: ");
-        String password = scanner.nextLine();
-        System.out.print("Enter Phone: ");
-        String phone = scanner.nextLine();
-        System.out.print("Enter Address: ");
-        String address = scanner.nextLine();
-        System.out.print("Enter User ID: ");
-        int userID = scanner.nextInt();
-        scanner.nextLine(); // Consume newline
-        System.out.print("Enter Specialization: ");
-        String specialization = scanner.nextLine();
-        System.out.print("Enter Years of Experience: ");
-        int experienceYears = scanner.nextInt();
-        scanner.nextLine(); // Consume newline
-
-        Doctor doctor = new Doctor(name, email, password, phone, address, userID, specialization, experienceYears);
-        doctors.add(doctor);
-        System.out.println("Doctor " + name + " registered successfully.");
-    }
+        private static void registerDoctor() {
+            System.out.println("\n——————————————————————————————————————");
+            System.out.println("             Register New Doctor      ");
+            System.out.println("——————————————————————————————————————");
+        
+            System.out.print("  Enter Doctor Name: ");
+            String name = scanner.nextLine();
+            
+            System.out.print("  Enter Email: ");
+            String email = scanner.nextLine();
+            
+            System.out.print("  Enter Password: ");
+            String password = scanner.nextLine();
+            
+            System.out.print("  Enter Phone: ");
+            String phone = scanner.nextLine();
+            
+            System.out.print("  Enter Address: ");
+            String address = scanner.nextLine();
+            
+            System.out.print("  Enter User ID: ");
+            int userID = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
+            
+            System.out.print("  Enter Specialization: ");
+            String specialization = scanner.nextLine();
+            
+            System.out.print("  Enter Years of Experience: ");
+            int experienceYears = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
+        
+            Doctor doctor = new Doctor(name, email, password, phone, address, userID, specialization, experienceYears);
+            doctors.add(doctor);
+        
+            System.out.println("——————————————————————————————————————");
+            System.out.println("  Doctor " + name + " registered successfully.");
+            System.out.println("——————————————————————————————————————");
+        }
+        
 
     private static void scheduleAppointment() {
         if (patients.isEmpty() || doctors.isEmpty()) {

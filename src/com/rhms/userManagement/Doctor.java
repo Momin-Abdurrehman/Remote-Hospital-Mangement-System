@@ -14,13 +14,13 @@ public class Doctor extends User {
         this.assignedPatients = new ArrayList<>();
     }
 
-    public void addPatient(Patient patient) {
+    public void addPatient(Patient patient) { //adds patients to assignmed patients array list
         assignedPatients.add(patient);
-    }       //add patient method
+    }       
 
     public void provideFeedback(Patient patient, String feedback) {
         patient.getDoctorFeedback().add(feedback);
-    }   //feedback method
+    }   
 
     public void manageAppointment(String appointmentDetails) {
         System.out.println("Managing appointment: " + appointmentDetails);

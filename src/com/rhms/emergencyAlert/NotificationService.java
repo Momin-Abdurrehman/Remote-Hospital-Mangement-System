@@ -1,49 +1,35 @@
 package com.rhms.emergencyAlert;
 
-import com.rhms.userManagement.Patient;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-/**
- * Handles emergency notifications through multiple channels (email, SMS) and logging
- */
+import com.rhms.userManagement.Patient;
+
 public class NotificationService {
-    // Configuration for notification services
+    // Notification service configurations
     private static final String EMAIL_SERVER = "smtp.hospital.com";
     private static final String SMS_GATEWAY = "sms.hospital.com";
 
-    /**
-     * Sends emergency alert through all available channels
-     * @param message Alert content to be sent
-     * @param patient Patient requiring emergency attention
-     */
+    // Sends emergency alert through email, SMS, and logs it
     public void sendEmergencyAlert(String message, Patient patient) {
         sendEmail(message, patient);
         sendSMS(message, patient);
         logAlert(message);
     }
 
-    /**
-     * Sends email notification to patient's registered email
-     */
+    // Sends email notification
     private void sendEmail(String message, Patient patient) {
-        // Simulated email sending via hospital SMTP server
         System.out.println("Sending email alert to: " + patient.getEmail());
         System.out.println("Message: " + message);
     }
 
-    /**
-     * Sends SMS notification to patient's registered phone number
-     */
+    // Sends SMS notification
     private void sendSMS(String message, Patient patient) {
-        // Simulated SMS sending via hospital SMS gateway
         System.out.println("Sending SMS alert to: " + patient.getName());
         System.out.println("Message: " + message);
     }
 
-    /**
-     * Records alert details with timestamp for audit purposes
-     */
+    // Logs alert details with timestamp
     private void logAlert(String message) {
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
