@@ -14,8 +14,8 @@ import javax.mail.internet.MimeMessage;
 // Handles email notifications using Gmail SMTP server
 public class EmailNotification implements Notifiable {
     // Gmail credentials for sending emails
-    private final String senderEmail = "momin332472@gmail.com"; // My Gmail
-    private final String senderPassword = "evhe zjge jpsm hiwb"; // My Gmail App Password (through security in google account)
+    private final String senderEmail = "RemoteHospitalSystem@gmail.com"; // My Gmail
+    private final String senderPassword = "smxm iqre qkbs uook "; // My Gmail App Password (through security in google account)
 
     // Sends an email notification to the specified recipient
     @Override
