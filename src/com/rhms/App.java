@@ -72,9 +72,10 @@ public class App {
             System.out.println("\n===== RHMS Admin Menu =====");
             System.out.println("1. Register Patient");
             System.out.println("2. Register Doctor");
-            System.out.println("3. Schedule Appointment");
-            System.out.println("4. Send Notifications");
-            System.out.println("5. View All Appointments");
+            System.out.println("3. Upload Vital Signs");
+            System.out.println("4. Schedule Appointment");
+            System.out.println("5. Send Notifications");
+            System.out.println("6. View All Appointments");
             System.out.println("0. Back to User Selection");
             System.out.print("Choose an option: ");
     
@@ -89,12 +90,15 @@ public class App {
                     registerDoctor();
                     break;
                 case 3:
-                    scheduleAppointment();
+                    uploadVitals();
                     break;
                 case 4:
-                    showNotificationMenu();
+                    scheduleAppointment();
                     break;
                 case 5:
+                    showNotificationMenu();
+                    break;
+                case 6:
                     viewAllAppointments();
                     break;
                 case 0:
@@ -156,10 +160,9 @@ public class App {
             System.out.println("\n===== RHMS Doctor Menu =====");
             System.out.println("1. Approve Appointment");
             System.out.println("2. Cancel Appointment");
-            System.out.println("3. Upload Vital Signs");
-            System.out.println("4. View Patient Vitals");
-            System.out.println("5. Start Video Consultation");
-            System.out.println("6. Open Chat");
+            System.out.println("3. View Patient Vitals");
+            System.out.println("4. Start Video Consultation");
+            System.out.println("5. Open Chat");
             System.out.println("0. Back to User Selection");
             System.out.print("Choose an option: ");
     
@@ -172,9 +175,6 @@ public class App {
                     break;
                 case 2:
                     cancelAppointment();
-                    break;
-                case 3:
-                    uploadVitals();
                     break;
                 case 4:
                     viewVitals();
