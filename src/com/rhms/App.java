@@ -1,19 +1,24 @@
 package com.rhms;
 
-import com.rhms.userManagement.*;
-import com.rhms.appointmentScheduling.*;
-import com.rhms.healthDataHandling.*;
-import com.rhms.doctorPatientInteraction.*;
-import com.rhms.emergencyAlert.*;
-import com.rhms.notifications.ReminderService;
-import com.rhms.notifications.SMSNotification;
-import com.rhms.notifications.EmailNotification;
-
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
+
+import com.rhms.appointmentScheduling.Appointment;
+import com.rhms.appointmentScheduling.AppointmentManager;
+import com.rhms.doctorPatientInteraction.ChatClient;
+import com.rhms.doctorPatientInteraction.ChatServer;
+import com.rhms.doctorPatientInteraction.VideoCall;
+import com.rhms.emergencyAlert.EmergencyAlert;
+import com.rhms.emergencyAlert.PanicButton;
+import com.rhms.healthDataHandling.VitalSign;
+import com.rhms.notifications.EmailNotification;
+import com.rhms.notifications.ReminderService;
+import com.rhms.notifications.SMSNotification;
+import com.rhms.userManagement.Doctor;
+import com.rhms.userManagement.Patient;
 
 public class App {
     private static ArrayList<Patient> patients = new ArrayList<>();
@@ -37,78 +42,153 @@ public class App {
             System.out.println("3. Admin");
             System.out.println("0. Exit System");
             System.out.print("Choose your user type: ");
-
+    
             int userTypeChoice = scanner.nextInt();
             scanner.nextLine(); // Consume newline
-
+    
             if (userTypeChoice == 0) {
                 System.out.println("Exiting RHMS System. Goodbye!");
                 return;
             }
-
+    
             switch (userTypeChoice) {
-                case 1: userType = "Patient"; break;
-                case 2: userType = "Doctor"; break;
-                case 3: userType = "Admin"; break;
+                case 1:
+                    handlePatientMenu();
+                    break;
+                case 2:
+                    handleDoctorMenu();
+                    break;
+                case 3:
+                    handleAdminMenu();
+                    break;
                 default:
                     System.out.println("Invalid choice! Please try again.");
-                    continue;
             }
-
-            // Sub-menu loop
-            boolean stayInSubmenu = true;
-            while (stayInSubmenu) {
-                System.out.println("\n===== RHMS System Menu =====");
-                if ("Admin".equals(userType)) {
-                    showAdminMenu();
-                } else if ("Patient".equals(userType)) {
-                    showPatientMenu();
-                } else if ("Doctor".equals(userType)) {
-                    showDoctorMenu();
-                }
-                int choice = scanner.nextInt();
-                scanner.nextLine(); // Consume newline
-
-                if (choice == 9) {
-                    stayInSubmenu = false; // Go back to user type selection
-                    continue;
-                }
-
-                // Execute based on the user type
-                if ("Admin".equals(userType)) {
-                    switch (choice) {
-                        case 1: registerPatient(); break;
-                        case 2: registerDoctor(); break;
-                        case 3: scheduleAppointment(); break;
-                        case 4: showNotificationMenu(); break;
-                        case 5: viewAllAppointments(); break;
-                        case 0: stayInSubmenu = false; break;
-                        default: System.out.println("Invalid choice!");
-                    }
-                } else if ("Patient".equals(userType)) {
-                    switch (choice) {
-                        case 1: scheduleAppointment(); break;
-                        case 2: viewVitals(); break;
-                        case 3: provideFeedback(); break;
-                        case 4: triggerEmergencyAlert(); break;
-                        case 5: togglePanicButton(); break;
-                        case 6: joinVideoConsultation(); break;
-                        case 7: openChat(); break;
-                        case 0: System.out.println("Exiting RHMS System. Goodbye!"); return;
-                        default: System.out.println("Invalid choice! Please try again.");
-                    }
-                } else if ("Doctor".equals(userType)) {
-                    switch (choice) {
-                        case 1: approveAppointment(); break;
-                        case 2: cancelAppointment(); break;
-                        case 3: uploadVitals(); break;
-                        case 4: viewVitals(); break;
-                        case 5: startVideoConsultation(); break;
-                        case 6: openChat(); break;
-                        case 0: System.out.println("Exiting RHMS System. Goodbye!"); return;
-                        default: System.out.println("Invalid choice! Please try again.");
-                    }
-                }
+        }
+    }
+    
+    private static void handleAdminMenu() {
+        while (true) {
+            System.out.println("\n===== RHMS Admin Menu =====");
+            System.out.println("1. Register Patient");
+            System.out.println("2. Register Doctor");
+            System.out.println("3. Upload Vital Signs");
+            System.out.println("4. Schedule Appointment");
+            System.out.println("5. Send Notifications");
+            System.out.println("6. View All Appointments");
+            System.out.println("0. Back to User Selection");
+            System.out.print("Choose an option: ");
+    
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
+    
+            switch (choice) {
+                case 1:
+                    registerPatient();
+                    break;
+                case 2:
+                    registerDoctor();
+                    break;
+                case 3:
+                    uploadVitals();
+                    break;
+                case 4:
+                    scheduleAppointment();
+                    break;
+                case 5:
+                    showNotificationMenu();
+                    break;
+                case 6:
+                    viewAllAppointments();
+                    break;
+                case 0:
+                    return; // Exit to user selection
+                default:
+                    System.out.println("Invalid choice! Please try again.");
+            }
+        }
+    }
+    
+    private static void handlePatientMenu() {
+        while (true) {
+            System.out.println("\n===== RHMS Patient Menu =====");
+            System.out.println("1. Schedule an Appointment");
+            System.out.println("2. View Patient Vitals");
+            System.out.println("3. Provide Doctor Feedback");
+            System.out.println("4. Trigger Emergency Alert");
+            System.out.println("5. Enable/Disable Panic Button");
+            System.out.println("6. Join Video Consultation");
+            System.out.println("7. Open Chat");
+            System.out.println("0. Back to User Selection");
+            System.out.print("Choose an option: ");
+    
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
+    
+            switch (choice) {
+                case 1:
+                    scheduleAppointment();
+                    break;
+                case 2:
+                    viewVitals();
+                    break;
+                case 3:
+                    provideFeedback();
+                    break;
+                case 4:
+                    triggerEmergencyAlert();
+                    break;
+                case 5:
+                    togglePanicButton();
+                    break;
+                case 6:
+                    joinVideoConsultation();
+                    break;
+                case 7:
+                    openChat();
+                    break;
+                case 0:
+                    return; // Exit to user selection
+                default:
+                    System.out.println("Invalid choice! Please try again.");
+            }
+        }
+    }
+    
+    private static void handleDoctorMenu() {
+        while (true) {
+            System.out.println("\n===== RHMS Doctor Menu =====");
+            System.out.println("1. Approve Appointment");
+            System.out.println("2. Cancel Appointment");
+            System.out.println("3. View Patient Vitals");
+            System.out.println("4. Start Video Consultation");
+            System.out.println("5. Open Chat");
+            System.out.println("0. Back to User Selection");
+            System.out.print("Choose an option: ");
+    
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
+    
+            switch (choice) {
+                case 1:
+                    approveAppointment();
+                    break;
+                case 2:
+                    cancelAppointment();
+                    break;
+                case 4:
+                    viewVitals();
+                    break;
+                case 5:
+                    startVideoConsultation();
+                    break;
+                case 6:
+                    openChat();
+                    break;
+                case 0:
+                    return; // Exit to user selection
+                default:
+                    System.out.println("Invalid choice! Please try again.");
             }
         }
     }
@@ -118,10 +198,35 @@ public class App {
         System.out.println("1. Register Patient");
         System.out.println("2. Register Doctor");
         System.out.println("3. Schedule Appointment");
-        System.out.println("4. Send Notifications");
+        System.out.println("4. Send Notifications"); // Added option for sending notifications
         System.out.println("5. View All Appointments");
         System.out.println("0. Back to User Selection");
         System.out.print("Choose an option: ");
+    
+        int choice = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
+    
+        switch (choice) {
+            case 1:
+                registerPatient();
+                break;
+            case 2:
+                registerDoctor();
+                break;
+            case 3:
+                scheduleAppointment();
+                break;
+            case 4:
+                sendNotification(); // Call the sendNotification method
+                break;
+            case 5:
+                viewAllAppointments();
+                break;
+            case 0:
+                return; // Exit to user selection
+            default:
+                System.out.println("Invalid choice! Please try again.");
+        }
     }
 
     private static void showPatientMenu() {
@@ -491,38 +596,42 @@ public class App {
     }
 
     private static void sendNotification() {
-        System.out.println("\n=== Send Notification ===");
-        System.out.println("1. Send Appointment Reminder");
-        System.out.println("2. Send Medication Reminder");
-        System.out.println("3. Send Custom Message");
-        System.out.println("0. Back");
-        System.out.print("Choose an option: ");
-
-        int choice = scanner.nextInt();
-        scanner.nextLine(); // Consume newline
-
-        System.out.print("Enter patient name: ");
+        System.out.println("\n===== Send Notification =====");
+        System.out.print("Enter the patient's name: ");
         String patientName = scanner.nextLine();
-        Patient patient = findPatient(patientName);
-        if (patient == null) {
-            System.out.println("Patient not found!");
-            return;
+        
+        // Check if the patient exists
+        Patient targetPatient = null;
+        for (Patient patient : patients) {
+            if (patient.getName().equalsIgnoreCase(patientName)) {
+                targetPatient = patient;
+                break;
+            }
         }
-
-        switch (choice) {
+        
+        if (targetPatient == null) {
+            System.out.println("Error: Patient with name '" + patientName + "' does not exist.");
+            return; // Exit the method immediately to avoid waiting for further input
+        }
+        
+        // Proceed only if the patient exists
+        System.out.println("Choose notification type:");
+        System.out.println("1. Email");
+        System.out.print("Enter your choice: ");
+        
+        int choice = scanner.nextInt();
+        scanner.nextLine(); // Consume the leftover newline character
+        
+        System.out.print("Enter your custom message: ");
+        String message = scanner.nextLine();
+        
+        switch (choice) {    
             case 1:
-                sendAppointmentReminder(patient);
+                emailNotification.sendNotification(targetPatient.getEmail(), "Custom Message", message);
+                System.out.println("Email sent to " + targetPatient.getName());
                 break;
-            case 2:
-                sendMedicationReminder(patient);
-                break;
-            case 3:
-                sendCustomMessage(patient);
-                break;
-            case 0:
-                return;
             default:
-                System.out.println("Invalid choice!");
+                System.out.println("Invalid choice! Notification not sent.");
         }
     }
 
@@ -610,3 +719,4 @@ public class App {
         }
     }
 }
+
